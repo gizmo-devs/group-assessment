@@ -13,7 +13,7 @@ from app import APP_ROOT
 DATA_FILES_LOC = path.join(APP_ROOT, "data_files")
 
 
-def file_exists(filepath, dir=False):
+def path_exists(filepath, dir=False):
     """
     A simple function to check if a file or folder exists
     :param filepath:    filepath to check
@@ -75,8 +75,9 @@ def load_files_in_directory(directory):
     :return:            all of the csvs in directory
     :rtype:             dict
     """
-    # for file in directory
+
     loaded_data = []
+    # for file that end with .csv in directory
     for f in listdir(path.join(DATA_FILES_LOC, directory)):
         if f.endswith(".csv"):
             loaded_data.extend(load_file(path.join(DATA_FILES_LOC, "crime_files", f)))
@@ -93,13 +94,13 @@ def load_file(fpath):
     :return: returns the contents of the csv
     :rtype: dict
     """
-    if file_exists(fpath):
+    if path_exists(fpath):
         return read_csv_file(fpath)
     else:
         print(f"Cound not read file {fpath}")
 
 
 if __name__ == '__main__':
-    print(file_exists(DATA_FILES_LOC, dir=True))
+    print(path_exists(DATA_FILES_LOC, dir=True))
     print(load_files_in_directory("crime_files"))
     write_file(load_file(path.join(DATA_FILES_LOC, "postcodes", "postcodes.csv")), 'postcodes.json')
