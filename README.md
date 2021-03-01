@@ -1,4 +1,4 @@
-# group-assessment
+# ECM1421 Group Assessment
 
 This is for the group assignment for ECM1421.
 
@@ -10,6 +10,8 @@ This is for the group assignment for ECM1421.
 ## Running the application
 1. navigate to the repository
 2. `python check_crime.py`
+
+Note: all files (crimes + postcodes) are located in the `data_files` directory
 
 ## Making contributions
 All new modules should be created in the `custom_modules` directory
