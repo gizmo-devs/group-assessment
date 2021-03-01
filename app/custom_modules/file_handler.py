@@ -6,6 +6,7 @@ from os import path, listdir
 from app import APP_ROOT
 import csv, json
 
+#Add a global for the file_handler module
 DATA_FILES_LOC = path.join(APP_ROOT, "data_files")
 
 
