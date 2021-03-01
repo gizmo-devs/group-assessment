@@ -2,9 +2,12 @@
 This file holds file operations for CRUD
 Create, Read, Update, Delete
 """
+# python / system modules
 from os import path, listdir
-from app import APP_ROOT
 import csv, json
+
+# custom imports
+from app import APP_ROOT
 
 #Add a global for the file_handler module
 DATA_FILES_LOC = path.join(APP_ROOT, "data_files")
