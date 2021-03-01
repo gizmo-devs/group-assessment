@@ -26,13 +26,11 @@ def path_exists(filepath, dir=False):
     if dir:
         if path.exists(filepath):
             return True
-        else:
-            return False
     else:
         if path.isfile(filepath):
             return True
-        else:
-            return False
+
+    return False
 
 
 def read_csv_file(filepath):
@@ -43,7 +41,7 @@ def read_csv_file(filepath):
     :return:            contents of CSV
     :rtype:             list of dicts
     """
-    data=[]
+    data = []
     with open(filepath, newline='\n') as csvfile:
         reader = csv.DictReader(csvfile)
         for row in reader:
@@ -77,7 +75,7 @@ def load_files_in_directory(directory):
     """
 
     loaded_data = []
-    # for file that end with .csv in directory
+    # for .csv file in directory
     for f in listdir(path.join(DATA_FILES_LOC, directory)):
         if f.endswith(".csv"):
             loaded_data.extend(load_file(path.join(DATA_FILES_LOC, "crime_files", f)))
@@ -97,7 +95,7 @@ def load_file(fpath):
     if path_exists(fpath):
         return read_csv_file(fpath)
     else:
-        print(f"Cound not read file {fpath}")
+        print(f"Could not read file {fpath}")
 
 
 if __name__ == '__main__':
