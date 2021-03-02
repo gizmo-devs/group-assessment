@@ -84,7 +84,7 @@ def load_files_in_directory(directory):
     return loaded_data
 
 
-def load_file(fpath):
+def load_file(fpath, in_data_files=True):
     """
     loads fpath.
     :param fpath: file path (inc filename and ext)
@@ -92,13 +92,18 @@ def load_file(fpath):
     :return: returns the contents of the csv
     :rtype: dict
     """
-    if path_exists(fpath):
-        return read_csv_file(fpath)
+    if in_data_files:
+        file_path = path.join(DATA_FILES_LOC, fpath)
     else:
-        print(f"Could not read file {fpath}")
+        file_path = fpath
+
+    if path_exists(file_path):
+        return read_csv_file(file_path)
+    else:
+        print(f"Could not read file {file_path}")
 
 
 if __name__ == '__main__':
-    print(path_exists(DATA_FILES_LOC, dir=True))
-    print(load_files_in_directory("crime_files"))
-    write_file(load_file(path.join(DATA_FILES_LOC, "postcodes", "postcodes.csv")), 'postcodes.json')
+    # print(path_exists(DATA_FILES_LOC, dir=True))
+    # print(load_files_in_directory("crime_files"))
+    write_file(load_file(path.join("postcodes", "postcodes.csv")), 'postcodes.json')
