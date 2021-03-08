@@ -13,20 +13,21 @@ def sorter(data, sort_option):
     sorted_category = sorted(data, key=lambda x: x['Crime type'], reverse=False)
     return sorted_category
 
-sorter(data, 'date')
-
-sorter(data, 'distance')
-
-sorter(data, 'category')
-
 if __name__ == '__main__':
   # Using the file_handler for loading the json
   import file_handler as fh
 
   data = fh.load_files_in_directory("crime_files")
 
-  print("Inital Data")
+  print("Original Data")
   print(json.dumps(data[:3]))
 
-  print("Sorted Data")
+  print("Sorted Data by Date")
   print(json.dumps(sorter(data, 'date')[:3]))
+
+  print("Sorted Data by Crime Category")
+  print(json.dumps(sorter(data, 'category')[:3]))
+
+  # commented out for now as 'Distance' key does not yet exist.
+  # print("Sorted Data by Distance")
+  # print(json.dumps(sorter(data, 'distance')[:3]))
