@@ -1,11 +1,6 @@
 import json
 from datetime import datetime
 
-if __name__ == '__main__':
-  # load dummy data into a variable
-  with open('/Users/bradley/Documents/GitHub/group-assessment/app/data_files/crime_files/Schema_criminal_files.json') as f:
-    data = json.load(f)
-
 def sorter(data, sort_option):
   # sort data depending on option chosen
   if sort_option == 'date':
@@ -23,3 +18,15 @@ sorter(data, 'date')
 sorter(data, 'distance')
 
 sorter(data, 'category')
+
+if __name__ == '__main__':
+  # Using the file_handler for loading the json
+  import file_handler as fh
+
+  data = fh.load_files_in_directory("crime_files")
+
+  print("Inital Data")
+  print(json.dumps(data[:3]))
+
+  print("Sorted Data")
+  print(json.dumps(sorter(data, 'date')[:3]))
