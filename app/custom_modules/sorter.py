@@ -1,9 +1,10 @@
 import json
 from datetime import datetime
 
-# load dummy data into a variable
-with open('/Users/bradley/Documents/GitHub/group-assessment/app/data_files/crime_files/Schema_criminal_files.json') as f:
-  data = json.load(f)
+if __name__ == '__main__':
+  # load dummy data into a variable
+  with open('/Users/bradley/Documents/GitHub/group-assessment/app/data_files/crime_files/Schema_criminal_files.json') as f:
+    data = json.load(f)
 
 def sorter(data, sort_option):
   # sort data depending on option chosen
