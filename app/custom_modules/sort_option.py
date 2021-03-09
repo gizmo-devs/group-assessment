@@ -9,12 +9,14 @@ OPTS = {
 def sort_option():
     expected = set(['distance', '1',  'date', '2', 'category', '3'])
     while True:
-        criteria = input("Please enter a option: \n[1] distance \n[2] date \n[3] category \n\n")
+        criteria = input("Please enter a option: \n[1] distance \n[2] date \n[3] category \n[4] Quit \n\n").lower()
+        if criteria in ['quit' ,'q' , '4']:
+          return False
         if criteria in expected :
           print("it is in expected")
           return OPTS[criteria]
         else:
-          print ('\n\nPlease choose/enter one of the following: \n\n*For distance* 1 \n*For date*  2 \n*For category* 3 \n\n')
+          print ('\n\nPlease choose/enter one of the following: \n\n*For distance* 1 \n*For date*  2 \n*For category* 3 \n*To Quit* 4 \n\n')
 
 
 def ask_to_sort():
@@ -29,7 +31,7 @@ def ask_to_sort():
           return False
         # sys.exit("Program Terminated \n")
       else:
-        print(userInput_ask + " was not recognised." + "\nPlease type only " + ",".join(yes) + ",".join(no))
+        print(userInput_ask + " was not recognised." + "\nPlease type only " + ",".join(yes) + "," + ",".join(no))
 
 
 if __name__ == '__main__':
