@@ -34,6 +34,28 @@ def ask_to_sort():
         print(userInput_ask + " was not recognised." + "\nPlease type only " + ",".join(yes) + "," + ",".join(no))
 
 
+
+def export_name():
+  # manager/staff export 
+  ui = input("What did you want to call the export file: ")
+  if ui.__contains__(".csv"):
+    ui = ui.replace(".csv","")
+  if ui.__contains__(".py"):
+    ui = ui.replace(".py","")
+  if ui.__contains__(".txt"):
+    ui = ui.replace(".txt","")
+  # if ui.endswith(".csv") or ui.endswith(".py") or ui.endswith(".txt"):
+  #   ui = os.path.splitext(ui)[0]
+  temp_string = ''
+  temp_list = list(ui)
+  for item in temp_list:
+    if item not in list("[@_!#$%^&*\".()£¬`<>?/\|}{~:])({}~-_''"):
+      temp_string = temp_string + item
+
+  return temp_string
+
+
+
 if __name__ == '__main__':
     if ask_to_sort():
         print("sorted Value ", sort_option())
