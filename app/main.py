@@ -18,5 +18,5 @@ def init():
     print("Showing 1st element of Postcode Data:")
     print(postcode_data[0])
     
-    filtered_crime_data = fltr.Filter(crime_data, (+50.71527036, -2.44427954), 5)
+    filtered_crime_data = fltr.Filter(crime_data, (50.827973, -4.544117), 5)
     print(filtered_crime_data)

@@ -1,5 +1,6 @@
 # geogdist.py
 # Version 0.2
+import math
 
 def distance( latlngA, latlngB):
     '''
@@ -27,6 +28,7 @@ def distance( latlngA, latlngB):
     return d
 
 if __name__ == "__main__":
+    pass
     # Testing
     # TODO: Please verify the function by providing suitable test cases and
     # using asserts. The test should cover the cases your program is to deal
