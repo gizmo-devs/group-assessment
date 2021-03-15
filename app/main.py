@@ -29,10 +29,11 @@ def init():
     # Validate postcode
     pcode = pv.user_pcode()
 
+    # Get 1st element that matches.
     pcode_coord = [(float(x['ETRS89GD-Lat']), float(x['ETRS89GD-Long'])) for x in postcode_data \
                    if x['Postcode'].replace(" ", "").strip() == pcode.upper()][0]
 
-    # for test
+    # Uncomment to show Postcode.
     # print(pcode_coord)
 
     # Validate Radius
@@ -54,7 +55,7 @@ def init():
         crime_data = custom_sort.sorter(crime_data, sort_by)
 
     if len(crime_data) == 0:
-        print("No results found.")
+        print("No results found. Nothing to export. Ending")
         exit(0)
 
     # ask for export name
