@@ -35,24 +35,34 @@ def ask_to_sort():
 
 
 
-def export_name():
-  # manager/staff export 
-  ui = input("What did you want to call the export file: ")
-  if ui.__contains__(".csv"):
-    ui = ui.replace(".csv","")
-  if ui.__contains__(".py"):
-    ui = ui.replace(".py","")
-  if ui.__contains__(".txt"):
-    ui = ui.replace(".txt","")
-  # if ui.endswith(".csv") or ui.endswith(".py") or ui.endswith(".txt"):
-  #   ui = os.path.splitext(ui)[0]
+
+
+def check_ext(ui):
+  arr = ['.exe', '.csv', '.py', 'txt']
+  for value in arr:
+    if ui.__contains__(value):
+      ui = ui.replace(value,"")
+  return ui
+
+
+
+def remove_special_chars(ui):
   temp_string = ''
   temp_list = list(ui)
   for item in temp_list:
     if item not in list("[@_!#$%^&*\".()£¬`<>?/\|}{~:])({}~-_''"):
       temp_string = temp_string + item
-
   return temp_string
+
+
+
+def export_name():
+  ui = input("What did you want to call the export file: ")
+  ui = check_ext(ui)
+  ui = remove_special_chars(ui)
+  return ui
+
+
 
 
 
