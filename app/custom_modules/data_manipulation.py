@@ -1,5 +1,29 @@
+"""
+Filtering the dictionary by radius.
+"""
+import math
 import json
 from datetime import datetime
+
+from ..assigned_modules import geodist as gd
+
+
+def Filter(crime_data, postcode_latlng, radius):
+    
+    print(type(crime_data))
+    filtered_data = []
+    
+    for i in crime_data:
+        if i['Longitude'] == "" or i['Latitude'] == "":
+            continue
+        else:
+            lng = float(i['Longitude'])
+            lat = float(i['Latitude'])
+            if gd.distance(postcode_latlng,(lat,lng)) <= radius:
+                filtered_data.append(i)
+
+    return filtered_data
+
 
 def sorter(data, sort_option):
   # sort data depending on option chosen
@@ -12,6 +36,7 @@ def sorter(data, sort_option):
   if sort_option == 'category':
     sorted_category = sorted(data, key=lambda x: x['Crime type'], reverse=False)
     return sorted_category
+
 
 if __name__ == '__main__':
   # Using the file_handler for loading the json
