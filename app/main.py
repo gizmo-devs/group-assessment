@@ -2,10 +2,32 @@
 This is the where the main logic for the application is contained.
 """
 from os import path
+import sys
+import app
 from .custom_modules import file_handler as fh
 from .custom_modules import input_validation as iv
 from .custom_modules import user_interaction as ui
 from .custom_modules import data_manipulation as dm
+
+
+def check_app_commands(cmd):
+    if cmd == ('restart'):
+        restart()
+    if cmd == ('quit'):
+        quit()
+    if cmd == ('help'):
+        print(app.HELPER)
+    return
+
+
+def restart():
+    print("Restarting")
+    return init()
+
+
+def quit():
+    print('Exiting')
+    sys.exit(0)
 
 
 def init():
