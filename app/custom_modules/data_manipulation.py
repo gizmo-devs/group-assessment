@@ -20,7 +20,7 @@ def Filter(crime_data, postcode_latlng, radius):
             lng = float(i['Longitude'])
             lat = float(i['Latitude'])
             i['Distance'] = gd.distance(postcode_latlng, (lat, lng))
-            if gd.distance(postcode_latlng, (lat, lng)) <= radius:
+            if i['Distance'] <= radius:
                 filtered_data.append(i)
 
     return filtered_data
