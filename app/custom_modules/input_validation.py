@@ -1,3 +1,6 @@
+import app
+
+
 def user_pcode():
     p_code = '_'
     digi_range = False
@@ -7,17 +10,19 @@ def user_pcode():
         
         p = input("Please enter your postcode: ")
         p_code = p.replace(" ","").lower()
-        
-    #Length check     
+
+        app.main.check_app_commands(p)
+
+        # Length check
         if len(p) not in range(6,9):
             print ("Input Unsuccessful: Invalid Post code length.Please try again")
              
         else:
                 
-            #String Position check
+            # String Position check
             if p_code[-2:].isalpha() and p_code[0].isalpha():
                 
-                #Digit Checker
+                # Digit Checker
                 for char in p:
                     if char.isdigit():
                         digi_count+=1                   
@@ -42,7 +47,8 @@ def user_radius():
 
     while radius.isdigit() == False or within_range == False:
 
-        radius = input("Please pick radius of 1,2 or 5: ")
+        radius = input("Please pick radius of 1, 2 or 5: ")
+        app.main.check_app_commands(radius)
 
         # Digit Check
         if radius.isdigit() == False:
@@ -55,6 +61,6 @@ def user_radius():
                 print('Input Successful')
             else:
                 within_range = False
-                print("Input Failed: Please enter a radius of 1,2 or 5")
+                print("Input Failed: Please enter a radius of 1, 2 or 5")
 
     return int(radius)

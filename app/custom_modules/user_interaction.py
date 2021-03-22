@@ -1,4 +1,4 @@
-import sys
+import app
 
 OPTS = {
     "1": "distance",
@@ -11,13 +11,14 @@ def sort_option():
     expected = set(['distance', '1',  'date', '2', 'category', '3'])
     while True:
         criteria = input("Please enter a option: \n[1] distance \n[2] date \n[3] category \n[4] Quit \n\n").lower()
-        if criteria in ['quit' ,'q' , '4']:
-            return False
-        if criteria in expected :
-            print("it is in expected")
+        app.main.check_app_commands(criteria)
+        if criteria in ['quit', 'q',  '4']:
+            app.main.check_app_commands('quit')
+        if criteria in expected:
+            #print("it is in expected")
             return OPTS[criteria]
         else:
-            print ('\n\nPlease choose/enter one of the following: \n\n*For distance* 1 \n*For date*  2 \n*For category* 3 \n*To Quit* 4 \n\n')
+            print('\n\nPlease choose/enter one of the following: \n\n*For distance* 1 \n*For date*  2 \n*For category* 3 \n*To Quit* 4 \n\n')
 
 
 def ask_to_sort():
@@ -26,6 +27,7 @@ def ask_to_sort():
 
     while True:
         userInput_ask = input("\n\nDo you want to Sort by Distance, Date or Category? \nPlease Enter 'Y' or 'N'\n\n").lower()
+        app.main.check_app_commands(userInput_ask)
         if userInput_ask in yes:
             return True
         elif userInput_ask in no:
@@ -54,6 +56,7 @@ def remove_special_chars(ui):
 
 def export_name():
     ui = input("What did you want to call the export file: ")
+    app.main.check_app_commands(ui)
     ui = check_ext(ui)
     ui = remove_special_chars(ui)
     return ui
