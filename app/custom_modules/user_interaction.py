@@ -34,6 +34,38 @@ def ask_to_sort():
         print(userInput_ask + " was not recognised." + "\nPlease type only " + ",".join(yes) + "," + ",".join(no))
 
 
+
+
+
+def check_ext(ui):
+  arr = ['.exe', '.csv', '.py', 'txt']
+  for value in arr:
+    if ui.__contains__(value):
+      ui = ui.replace(value,"")
+  return ui
+
+
+
+def remove_special_chars(ui):
+  temp_string = ''
+  temp_list = list(ui)
+  for item in temp_list:
+    if item not in list("[@_!#$%^&*\".()£¬`<>?/\|}{~:])({}~-_''"):
+      temp_string = temp_string + item
+  return temp_string
+
+
+
+def export_name():
+  ui = input("What did you want to call the export file: ")
+  ui = check_ext(ui)
+  ui = remove_special_chars(ui)
+  return ui
+
+
+
+
+
 if __name__ == '__main__':
     if ask_to_sort():
         print("sorted Value ", sort_option())
