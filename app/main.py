@@ -22,7 +22,7 @@ def init():
     pcode = pv.user_pcode()
 
     # Get 1st element that matches.
-    pcode_coord = [(float(x['ETRS89GD-Lat']), float(x['ETRS89GD-Long'])) for x in postcode_data \
+    pcode_coord = [(float(x['ETRS89GD-Lat']), float(x['ETRS89GD-Long'])) for x in postcode_data
                    if x['Postcode'].replace(" ", "").strip() == pcode.upper()][0]
 
     # Validate Radius
