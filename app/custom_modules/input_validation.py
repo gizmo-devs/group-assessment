@@ -8,7 +8,7 @@ def user_pcode():
     
     while len(p_code) not in range(6,9) or digi_range == False :
         
-        p = input("Please enter your postcode: ")
+        p = input("Please enter a postcode: ")
         p_code = p.replace(" ","").lower()
 
         app.main.check_app_commands(p)

@@ -22,6 +22,7 @@ def check_app_commands(cmd):
 
 def restart():
     print("Restarting")
+    print("")
     return init()
 
 
@@ -31,6 +32,9 @@ def quit():
 
 
 def init():
+    # Set initial variable
+    pcode_coord = None
+
     # Example of how to collect the data from the files
     print("Loading in crime files...")
     crime_data = fh.load_files_in_directory("crime_files")
@@ -41,8 +45,15 @@ def init():
     pcode = iv.user_pcode()
 
     # Get 1st element that matches.
-    pcode_coord = [(float(x['ETRS89GD-Lat']), float(x['ETRS89GD-Long'])) for x in postcode_data
-                   if x['Postcode'].replace(" ", "").strip() == pcode.upper()][0]
+    for record in postcode_data:
+        if record['Postcode'].replace(" ", "").strip() == pcode.upper():
+            pcode_coord = (float(record['ETRS89GD-Lat']), float(record['ETRS89GD-Long']))
+            break
+
+    # Unable to obtain postcode.
+    if not pcode_coord:
+        print(f"Cannot obtain coordinates for {pcode}.")
+        restart()
 
     # Validate Radius
     r = iv.user_radius()
