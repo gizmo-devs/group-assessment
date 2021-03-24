@@ -9,6 +9,6 @@ This application filters and sorts the .csv files in {os.path.join(APP_ROOT, 'da
 
 The filtering and sorting criteria is inputted from the user.
 
-If you want to exit the application at ay time tupe 'quit' exit.
+If you want to exit the application at ay time type 'quit' exit.
 or should you want to start again, type 'restart'.
 """

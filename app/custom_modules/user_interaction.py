@@ -10,8 +10,8 @@ OPTS = {
 def sort_option():
     expected = set(['distance', '1',  'date', '2', 'category', '3'])
     while True:
-        criteria = input("Please enter a option: \n[1] distance \n[2] date \n[3] category \n[4] Quit \n\n").lower()
-        app.main.check_app_commands(criteria)
+        criteria = input("Please enter a option: \n[1] distance \n[2] date \n[3] category: \n").lower()
+        app.main.check_app_commands(criteria.lower())
         if criteria in ['quit', 'q',  '4']:
             app.main.check_app_commands('quit')
         if criteria in expected:
@@ -27,7 +27,7 @@ def ask_to_sort():
 
     while True:
         userInput_ask = input("\n\nDo you want to Sort by Distance, Date or Category? \nPlease Enter 'Y' or 'N'\n\n").lower()
-        app.main.check_app_commands(userInput_ask)
+        app.main.check_app_commands(userInput_ask.lower())
         if userInput_ask in yes:
             return True
         elif userInput_ask in no:
@@ -56,7 +56,7 @@ def remove_special_chars(ui):
 
 def export_name():
     ui = input("What did you want to call the export file: ")
-    app.main.check_app_commands(ui)
+    app.main.check_app_commands(ui.lower())
     ui = check_ext(ui)
     ui = remove_special_chars(ui)
     return ui
