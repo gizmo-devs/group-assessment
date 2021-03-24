@@ -1,3 +1,4 @@
+import app
 from app import main
-
-main.init()
+print(app.HELPER)
+app.main.init()
