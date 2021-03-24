@@ -1,7 +1,7 @@
 """
 This is the where the main logic for the application is contained.
 """
-from os import path
+from os import path, execl
 import sys
 import app
 from .custom_modules import file_handler as fh
@@ -11,6 +11,11 @@ from .custom_modules import data_manipulation as dm
 
 
 def check_app_commands(cmd):
+    """
+    Check to see if the command given is for a help, restart or quit.
+    :param cmd: help, restart or quit
+    :type cmd: string
+    """
     if cmd == ('restart'):
         restart()
     if cmd == ('quit'):
@@ -21,19 +26,26 @@ def check_app_commands(cmd):
 
 
 def restart():
+    """
+    Command to restart the program
+    """
     print("Restarting")
     print("")
-    return init()
+    return execl(sys.executable, sys.executable, *sys.argv)
 
 
 def quit():
+    """
+    Command to quit the program
+    """
     print('Exiting')
     sys.exit(0)
 
 
 def init():
-    # Set initial variable
+    # Set initial variables
     pcode_coord = None
+    sort_by = ""
 
     # Example of how to collect the data from the files
     print("Loading in crime files...")
@@ -62,9 +74,6 @@ def init():
 
     # Get crime using the filter
     crime_data = dm.Filter(crime_data, pcode_coord, r)
-
-    # Set the sort_by as empty parameter.
-    sort_by = ""
 
     # Sort the results
     if ui.ask_to_sort():
