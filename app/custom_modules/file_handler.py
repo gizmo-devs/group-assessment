@@ -23,6 +23,8 @@ def path_exists(filepath, dir=False):
     :return:            True or False
     :rtype:             Boolean
     """
+    # Check that the filepath param supplied is a String.
+    assert isinstance(filepath, str), f"filepath '{filepath}' needs to be a string"
     if dir:
         if path.exists(filepath):
             return True
@@ -41,6 +43,8 @@ def read_csv_file(filepath):
     :return:            contents of CSV
     :rtype:             list of dicts
     """
+    # make sure that the path to the file exists.
+    assert path_exists(filepath), f"{filepath} was not recognised. Please enter a valid filepath"
     data = []
     with open(filepath, newline='\n') as csvfile:
         reader = csv.DictReader(csvfile)
@@ -73,7 +77,8 @@ def load_files_in_directory(directory):
     :return:            all of the csvs in directory
     :rtype:             dict
     """
-
+    # check to make sure that target directory is in the data_files folder.
+    assert path_exists(path.join(DATA_FILES_LOC,directory), True), f"{directory} Directory needs to exist."
     loaded_data = []
     # for .csv file in directory
     for f in listdir(path.join(DATA_FILES_LOC, directory)):
@@ -96,6 +101,8 @@ def load_file(fpath, in_data_files=True):
         file_path = path.join(DATA_FILES_LOC, fpath)
     else:
         file_path = fpath
+
+    assert path_exists(file_path), f"{file_path} could not be found."
 
     if path_exists(file_path):
         return read_csv_file(file_path)
@@ -126,8 +133,33 @@ def file_outputer(name_of_file,crime_data):
 # Example code run file_outputer("testing", crime_data)
 
 
-
 if __name__ == '__main__':
-    # print(path_exists(DATA_FILES_LOC, dir=True))
-    # print(load_files_in_directory("crime_files"))
-    write_file(load_file(path.join("postcodes", "postcodes.csv")), 'postcodes.json')
+    import pprint
+    # TESTS:
+    # fail_path = path.join(DATA_FILES_LOC, "test")
+    # fail_file = path.join(DATA_FILES_LOC, 'crime_files', 'FAIL-2020-01-devon-and-cornwall-street.csv')
+    # print(f"Does {DATA_FILES_LOC} exist? :", path_exists(DATA_FILES_LOC, dir=True))
+    # print(f"Does {path.join(DATA_FILES_LOC, 'crime_files','2020-01-devon-and-cornwall-street.csv')} exist? :", path_exists(path.join(DATA_FILES_LOC, "crime_files","2020-01-devon-and-cornwall-street.csv"), dir=True))
+    # print(f"Does {fail_path} exist? :", path_exists(fail_path, dir=True))
+    # print(f"Does {fail_file} exist? :", path_exists(fail_file, dir=True))
+    # file_path = "crime_files/FAIL-2020-01-devon-and-cornwall-street.csv"
+    # print(f"loading one file '{file_path}'")
+    # file_data = load_file(file_path)
+    # print("List elements created from one file: ", len(file_data))
+    # print("1st element from one file: ")
+    #
+    # pprint.pprint(file_data[0])
+    dir_data = load_files_in_directory('Incorect_crime_files')
+    print("Number of elements created from all the .csv files in 'crime_data': ", len(dir_data))
+
+
+    # Should throw an assert error as 10 is not a string
+    # path_exists(10)
+
+    # try loading a file that doesnt exits
+    # fail_file = path.join(DATA_FILES_LOC, "fail.xml")
+    # assert path_exists(fail_file), f"could not find path: {fail_file}"
+
+    # check to make sure that the result from reading the files is a list
+    # assert isinstance(load_files_in_directory("crime_files"), list), \
+    #     "Elements returned from load_files_in_directory should be a List."
